@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gerenciador_de_sistemas.controller.CursoController">
+
+    <children>
+
+        <!-- PARTE DE CIMA: FORMULÁRIO + BOTÕES -->
+        <VBox prefHeight="200.0" prefWidth="600.0" style="-fx-background-color: #000000;">
+            <children>
+
+                <!-- FORMULÁRIO -->
+                <GridPane hgap="5.0" prefHeight="120.0" prefWidth="400.0" style="-fx-background-color: #000000;" vgap="5.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+
+                    <children>
+                        <!-- Nome do curso -->
+                        <Label text="Nome do Curso:" textFill="WHITE">
+                            <font>
+                                <Font size="10.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="txtNomeCurso" promptText="Digite o nome do curso" GridPane.rowIndex="1" />
+
+                        <!-- Carga horária -->
+                        <Label text="Carga Horária:" textFill="WHITE" GridPane.rowIndex="2">
+                            <font>
+                                <Font size="10.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="txtCargaHoraria" promptText="Digite a carga horária" GridPane.rowIndex="3" />
+                    </children>
+                </GridPane>
+
+                <!-- BOTÕES -->
+                <HBox alignment="CENTER" prefHeight="60.0" prefWidth="200.0" spacing="5.0">
+                    <children>
+                        <Button mnemonicParsing="false" onAction="#onNovo" prefWidth="110.0" style="-fx-background-color: #3385ff;" text="Novo" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </Button>
+
+                        <Button mnemonicParsing="false" onAction="#onSalvar" prefWidth="110.0" style="-fx-background-color: #3385ff;" text="Salvar" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </Button>
+
+                        <Button mnemonicParsing="false" onAction="#onExcluir" prefWidth="110.0" style="-fx-background-color: #3385ff;" text="Excluir" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </Button>
+                        <Button onAction="#onEditar" prefWidth="100.0" style="-fx-background-color: #3385ff;" text="Editar" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </Button>
+
+
+
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                    </VBox.margin>
+                </HBox>
+
+            </children>
+            <VBox.margin>
+                <Insets left="20.0" right="20.0" top="10.0" />
+            </VBox.margin>
+        </VBox>
+
+        <!-- PARTE DE BAIXO: TABELA DE CURSOS -->
+        <TableView fx:id="tbCursos" prefHeight="222.0" prefWidth="600.0" style="-fx-background-color: #000000;">
+            <columns>
+                <TableColumn fx:id="colId" prefWidth="60.0" text="ID" />
+                <TableColumn fx:id="colNomeCurso" prefWidth="400.0" text="NOME DO CURSO" />
+                <TableColumn fx:id="colCargaHoraria" prefWidth="200.0" text="CARGA HORÁRIA" />
+            </columns>
+        </TableView>
+      <Separator prefWidth="200.0" style="-fx-background-color: #c2d6d6;" />
+
+    </children>
+</VBox>
