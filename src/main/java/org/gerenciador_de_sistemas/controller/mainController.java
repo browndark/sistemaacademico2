@@ -15,16 +15,13 @@ import org.gerenciador_de_sistemas.dao.CursoDAO;
 import org.gerenciador_de_sistemas.dao.DisciplinaDAO;
 import org.gerenciador_de_sistemas.dao.ProfessorDAO;
 import org.gerenciador_de_sistemas.dao.TurmaDAO;
-import org.gerenciador_de_sistemas.mainApplication;
 import org.gerenciador_de_sistemas.model.Curso;
 import org.gerenciador_de_sistemas.model.Disciplina;
 import org.gerenciador_de_sistemas.model.Professor;
 import org.gerenciador_de_sistemas.model.Turma;
-import org.gerenciador_de_sistemas.utils.PatchFXML;
 
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.ResourceBundle;
 

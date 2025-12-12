@@ -1,0 +1,453 @@
+[1mdiff --git a/src/main/java/org/gerenciador_de_sistemas/Launcher.java b/src/main/java/org/gerenciador_de_sistemas/Launcher.java[m
+[1mindex 5be1b3c..cb452ad 100644[m
+[1m--- a/src/main/java/org/gerenciador_de_sistemas/Launcher.java[m
+[1m+++ b/src/main/java/org/gerenciador_de_sistemas/Launcher.java[m
+[36m@@ -1,9 +1,31 @@[m
+ package org.gerenciador_de_sistemas;[m
+ [m
+[32m+[m[32m// Arquivo unificado: esta classe contém tanto main() quanto start() (inicializador JavaFX).[m
+ import javafx.application.Application;[m
+[32m+[m[32mimport javafx.fxml.FXMLLoader;[m
+[32m+[m[32mimport javafx.scene.Parent;[m
+[32m+[m[32mimport javafx.scene.Scene;[m
+[32m+[m[32mimport javafx.stage.Stage;[m
+[32m+[m[32mimport org.gerenciador_de_sistemas.utils.PatchFXML;[m
+[32m+[m
+[32m+[m[32mimport java.io.FileInputStream;[m
+[32m+[m[32mimport java.io.IOException;[m
+[32m+[m
+[32m+[m[32mpublic class Launcher extends Application {[m
+[32m+[m[32m    // CHANGED: marca simples para indicar versão/preparação para commit[m
+[32m+[m[32m    private static final String LAUNCHER_VERSION = "unified-launcher-2025-12-12";[m
+ [m
+[31m-public class Launcher {[m
+     public static void main(String[] args) {[m
+[31m-        Application.launch(mainApplication.class, args);[m
+[32m+[m[32m        launch(args);[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    @Override[m
+[32m+[m[32m    public void start(Stage stage) throws IOException {[m
+[32m+[m[32m        FXMLLoader fxmlLoader = new FXMLLoader();[m
+[32m+[m[32m        Parent root = fxmlLoader.load(new FileInputStream(PatchFXML.patchFXML() + "\\main-view.fxml"));[m
+[32m+[m[32m        Scene scene = new Scene(root, 800, 600);[m
+[32m+[m[32m        stage.setTitle("Sistema de Gerenciamento de Cursos Universitários");[m
+[32m+[m[32m        stage.setScene(scene);[m
+[32m+[m[32m        stage.show();[m
+     }[m
+ }[m
+[1mdiff --git a/src/main/java/org/gerenciador_de_sistemas/controller/mainController.java b/src/main/java/org/gerenciador_de_sistemas/controller/mainController.java[m
+[1mindex 067c913..75936af 100644[m
+[1m--- a/src/main/java/org/gerenciador_de_sistemas/controller/mainController.java[m
+[1m+++ b/src/main/java/org/gerenciador_de_sistemas/controller/mainController.java[m
+[36m@@ -15,16 +15,13 @@[m [mimport org.gerenciador_de_sistemas.dao.CursoDAO;[m
+ import org.gerenciador_de_sistemas.dao.DisciplinaDAO;[m
+ import org.gerenciador_de_sistemas.dao.ProfessorDAO;[m
+ import org.gerenciador_de_sistemas.dao.TurmaDAO;[m
+[31m-import org.gerenciador_de_sistemas.mainApplication;[m
+ import org.gerenciador_de_sistemas.model.Curso;[m
+ import org.gerenciador_de_sistemas.model.Disciplina;[m
+ import org.gerenciador_de_sistemas.model.Professor;[m
+ import org.gerenciador_de_sistemas.model.Turma;[m
+[31m-import org.gerenciador_de_sistemas.utils.PatchFXML;[m
+ [m
+ import java.io.IOException;[m
+ import java.net.URL;[m
+[31m-import java.nio.file.Paths;[m
+ import java.util.List;[m
+ import java.util.ResourceBundle;[m
+ [m
+[1mdiff --git a/src/main/java/org/gerenciador_de_sistemas/view/curso-view.fxml b/src/main/java/org/gerenciador_de_sistemas/view/curso-view.fxml[m
+[1mindex 8a6eed0..037b9e5 100644[m
+[1m--- a/src/main/java/org/gerenciador_de_sistemas/view/curso-view.fxml[m
+[1m+++ b/src/main/java/org/gerenciador_de_sistemas/view/curso-view.fxml[m
+[36m@@ -14,16 +14,15 @@[m
+ <?import javafx.scene.layout.VBox?>[m
+ <?import javafx.scene.text.Font?>[m
+ [m
+[31m-<VBox style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gerenciador_de_sistemas.controller.CursoController">[m
+[31m-[m
+[32m+[m[32m<VBox style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gerenciador_de_sistemas.controller.CursoController">[m
+     <children>[m
+ [m
+         <!-- PARTE DE CIMA: FORMULÁRIO + BOTÕES -->[m
+[31m-        <VBox prefHeight="200.0" prefWidth="600.0" style="-fx-background-color: #000000;">[m
+[32m+[m[32m        <VBox prefHeight="200.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;">[m
+             <children>[m
+ [m
+                 <!-- FORMULÁRIO -->[m
+[31m-                <GridPane hgap="5.0" prefHeight="120.0" prefWidth="400.0" style="-fx-background-color: #000000;" vgap="5.0">[m
+[32m+[m[32m                <GridPane hgap="5.0" prefHeight="120.0" prefWidth="400.0" style="-fx-background-color: #FFFFFF;" vgap="5.0">[m
+                     <columnConstraints>[m
+                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />[m
+                     </columnConstraints>[m
+[36m@@ -36,7 +35,7 @@[m
+ [m
+                     <children>[m
+                         <!-- Nome do curso -->[m
+[31m-                        <Label text="Nome do Curso:" textFill="WHITE">[m
+[32m+[m[32m                        <Label text="Nome do Curso:" textFill="#CC0000">[m
+                             <font>[m
+                                 <Font size="10.0" />[m
+                             </font>[m
+[36m@@ -44,7 +43,7 @@[m
+                         <TextField fx:id="txtNomeCurso" promptText="Digite o nome do curso" GridPane.rowIndex="1" />[m
+ [m
+                         <!-- Carga horária -->[m
+[31m-                        <Label text="Carga Horária:" textFill="WHITE" GridPane.rowIndex="2">[m
+[32m+[m[32m                        <Label text="Carga Horária:" textFill="#CC0000" GridPane.rowIndex="2">[m
+                             <font>[m
+                                 <Font size="10.0" />[m
+                             </font>[m
+[36m@@ -56,24 +55,24 @@[m
+                 <!-- BOTÕES -->[m
+                 <HBox alignment="CENTER" prefHeight="60.0" prefWidth="200.0" spacing="5.0">[m
+                     <children>[m
+[31m-                        <Button mnemonicParsing="false" onAction="#onNovo" prefWidth="110.0" style="-fx-background-color: #3385ff;" text="Novo" textFill="WHITE">[m
+[32m+[m[32m                        <Button mnemonicParsing="false" onAction="#onNovo" prefWidth="110.0" style="-fx-background-color: #CC0000;" text="Novo" textFill="WHITE">[m
+                             <font>[m
+                                 <Font name="System Bold" size="12.0" />[m
+                             </font>[m
+                         </Button>[m
+ [m
+[31m-                        <Button mnemonicParsing="false" onAction="#onSalvar" prefWidth="110.0" style="-fx-background-color: #3385ff;" text="Salvar" textFill="WHITE">[m
+[32m+[m[32m                        <Button mnemonicParsing="false" onAction="#onSalvar" prefWidth="110.0" style="-fx-background-color: #CC0000;" text="Salvar" textFill="WHITE">[m
+                             <font>[m
+                                 <Font name="System Bold" size="12.0" />[m
+                             </font>[m
+                         </Button>[m
+ [m
+[31m-                        <Button mnemonicParsing="false" onAction="#onExcluir" prefWidth="110.0" style="-fx-background-color: #3385ff;" text="Excluir" textFill="WHITE">[m
+[32m+[m[32m                        <Button mnemonicParsing="false" onAction="#onExcluir" prefWidth="110.0" style="-fx-background-color: #CC0000;" text="Excluir" textFill="WHITE">[m
+                             <font>[m
+                                 <Font name="System Bold" size="12.0" />[m
+                             </font>[m
+                         </Button>[m
+[31m-                        <Button onAction="#onEditar" prefWidth="100.0" style="-fx-background-color: #3385ff;" text="Editar" textFill="WHITE">[m
+[32m+[m[32m                        <Button onAction="#onEditar" prefWidth="100.0" style="-fx-background-color: #CC0000;" text="Editar" textFill="WHITE">[m
+                             <font>[m
+                                 <Font name="System Bold" size="12.0" />[m
+                             </font>[m
+[36m@@ -94,14 +93,14 @@[m
+         </VBox>[m
+ [m
+         <!-- PARTE DE BAIXO: TABELA DE CURSOS -->[m
+[31m-        <TableView fx:id="tbCursos" prefHeight="222.0" prefWidth="600.0" style="-fx-background-color: #000000;">[m
+[32m+[m[32m        <TableView fx:id="tbCursos" prefHeight="222.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;">[m
+             <columns>[m
+                 <TableColumn fx:id="colId" prefWidth="60.0" text="ID" />[m
+                 <TableColumn fx:id="colNomeCurso" prefWidth="400.0" text="NOME DO CURSO" />[m
+                 <TableColumn fx:id="colCargaHoraria" prefWidth="200.0" text="CARGA HORÁRIA" />[m
+             </columns>[m
+         </TableView>[m
+[31m-      <Separator prefWidth="200.0" style="-fx-background-color: #c2d6d6;" />[m
+[32m+[m[32m      <Separator prefWidth="200.0" style="-fx-background-color: #CC0000;" />[m
+ [m
+     </children>[m
+ </VBox>[m
+[1mdiff --git a/src/main/java/org/gerenciador_de_sistemas/view/disciplina-view.fxml b/src/main/java/org/gerenciador_de_sistemas/view/disciplina-view.fxml[m
+[1mindex 31197fd..8d943d9 100644[m
+[1m--- a/src/main/java/org/gerenciador_de_sistemas/view/disciplina-view.fxml[m
+[1m+++ b/src/main/java/org/gerenciador_de_sistemas/view/disciplina-view.fxml[m
+[36m@@ -13,14 +13,12 @@[m
+ <?import javafx.scene.layout.RowConstraints?>[m
+ <?import javafx.scene.layout.VBox?>[m
+ [m
+[31m-<VBox style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gerenciador_de_sistemas.controller.DisciplinaController">[m
+[32m+[m[32m<VBox style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gerenciador_de_sistemas.controller.DisciplinaController">[m
+    <HBox prefHeight="208.0" prefWidth="644.0">[m
+       <children>[m
+[31m-      [m
+[31m-                      <!-- Formulário de Disciplina -->[m
+[31m-          <VBox prefHeight="208.0" prefWidth="310.0" style="-fx-background-color: #000000;">[m
+[31m-              <GridPane prefHeight="177.0" prefWidth="344.0" style="-fx-background-color: #000000;">[m
+[31m-                  <Label prefHeight="34.0" prefWidth="114.0" text="Nome da Disciplina:" textFill="WHITE">[m
+[32m+[m[32m          <VBox prefHeight="208.0" prefWidth="310.0" style="-fx-background-color: #FFFFFF;">[m
+[32m+[m[32m              <GridPane prefHeight="177.0" prefWidth="344.0" style="-fx-background-color: #FFFFFF;">[m
+[32m+[m[32m                  <Label prefHeight="34.0" prefWidth="114.0" text="Nome da Disciplina:" textFill="#CC0000">[m
+                   <GridPane.margin>[m
+                      <Insets top="10.0" />[m
+                   </GridPane.margin>[m
+[36m@@ -34,7 +32,7 @@[m
+                   </GridPane.margin>[m
+                </TextField>[m
+       [m
+[31m-                                    <Label prefHeight="28.0" prefWidth="114.0" text="Descrição:" textFill="WHITE" GridPane.rowIndex="2">[m
+[32m+[m[32m                                    <Label prefHeight="28.0" prefWidth="114.0" text="Descrição:" textFill="#CC0000" GridPane.rowIndex="2">[m
+                   <padding>[m
+                      <Insets left="8.0" top="10.0" />[m
+                   </padding>[m
+[36m@@ -45,7 +43,7 @@[m
+                   </GridPane.margin>[m
+                </TextField>[m
+       [m
+[31m-                                    <Label prefHeight="29.0" prefWidth="113.0" text="Curso:" textFill="WHITE" GridPane.rowIndex="4">[m
+[32m+[m[32m                                    <Label prefHeight="29.0" prefWidth="113.0" text="Curso:" textFill="#CC0000" GridPane.rowIndex="4">[m
+                   <padding>[m
+                      <Insets left="10.0" />[m
+                   </padding>[m
+[36m@@ -86,26 +84,14 @@[m
+                      <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />[m
+                  </rowConstraints>[m
+                   <children>[m
+[31m-                        <Button onAction="#onNovo" prefHeight="52.0" prefWidth="187.0" text="Novo">[m
+[31m-                        <GridPane.margin>[m
+[31m-                           <Insets top="30.0" />[m
+[31m-                        </GridPane.margin>[m
+[31m-                     </Button>[m
+[31m-                        <Button onAction="#onSalvar" prefHeight="25.0" prefWidth="188.0" text="Salvar" GridPane.rowIndex="1">[m
+[31m-                        <GridPane.margin>[m
+[31m-                           <Insets top="30.0" />[m
+[31m-                        </GridPane.margin>[m
+[31m-                     </Button>[m
+[31m-                        <Button onAction="#onExcluir" prefHeight="28.0" prefWidth="187.0" text="Excluir" GridPane.rowIndex="2">[m
+[31m-                        <GridPane.margin>[m
+[31m-                           <Insets top="30.0" />[m
+[31m-                        </GridPane.margin>[m
+[31m-                     </Button>[m
+[31m-                     <Button layoutX="10.0" layoutY="129.0" onAction="#onExcluir" prefHeight="19.0" prefWidth="187.0" text="Editar" GridPane.rowIndex="3">[m
+[31m-                        <GridPane.margin>[m
+[31m-                           <Insets top="30.0" />[m
+[31m-                        </GridPane.margin>[m
+[31m-                     </Button>[m
+[32m+[m[32m                        <Button onAction="#onNovo" prefHeight="52.0" prefWidth="187.0" text="Novo" style="-fx-background-color: #CC0000;" textFill="WHITE">[m
+[32m+[m[32m                        </Button>[m
+[32m+[m[32m                        <Button onAction="#onSalvar" prefHeight="25.0" prefWidth="188.0" text="Salvar" GridPane.rowIndex="1" style="-fx-background-color: #CC0000;" textFill="WHITE">[m
+[32m+[m[32m                        </Button>[m
+[32m+[m[32m                        <Button onAction="#onExcluir" prefHeight="28.0" prefWidth="187.0" text="Excluir" GridPane.rowIndex="2" style="-fx-background-color: #CC0000;" textFill="WHITE">[m
+[32m+[m[32m                        </Button>[m
+[32m+[m[32m                     <Button layoutX="10.0" layoutY="129.0" onAction="#onExcluir" prefHeight="19.0" prefWidth="187.0" text="Editar" GridPane.rowIndex="3" style="-fx-background-color: #CC0000;" textFill="WHITE">[m
+[32m+[m[32m                        </Button>[m
+                   </children>[m
+                   <padding>[m
+                      <Insets left="100.0" />[m
+[36m@@ -117,7 +103,7 @@[m
+    </HBox>[m
+ [m
+     <!-- Tabela -->[m
+[31m-    <TableView fx:id="tbDisciplinas" prefHeight="207.0" prefWidth="581.0" style="-fx-background-color: #000000;">[m
+[32m+[m[32m    <TableView fx:id="tbDisciplinas" prefHeight="207.0" prefWidth="581.0" style="-fx-background-color: #FFFFFF;">[m
+         <columns>[m
+             <TableColumn fx:id="colId" prefWidth="95.0" text="ID" />[m
+             <TableColumn fx:id="colNomeDisciplina" minWidth="5.0" prefWidth="260.0" text="Nome da Disciplina" />[m
+[1mdiff --git a/src/main/java/org/gerenciador_de_sistemas/view/main-view.fxml b/src/main/java/org/gerenciador_de_sistemas/view/main-view.fxml[m
+[1mindex 186c5fa..73b5c5d 100644[m
+[1m--- a/src/main/java/org/gerenciador_de_sistemas/view/main-view.fxml[m
+[1m+++ b/src/main/java/org/gerenciador_de_sistemas/view/main-view.fxml[m
+[36m@@ -9,12 +9,12 @@[m
+ <?import javafx.scene.layout.VBox?>[m
+ <?import javafx.scene.text.Font?>[m
+ [m
+[31m-<VBox alignment="TOP_CENTER" prefHeight="500.0" prefWidth="600.0" spacing="20.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gerenciador_de_sistemas.controller.mainController">[m
+[32m+[m[32m<VBox alignment="TOP_CENTER" prefHeight="500.0" prefWidth="600.0" spacing="20.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gerenciador_de_sistemas.controller.mainController">[m
+ [m
+     <children>[m
+ [m
+         <!-- TÍTULO PRINCIPAL -->[m
+[31m-        <Label text="Sistema de Gerenciamento de Cursos Universitários" textFill="WHITE">[m
+[32m+[m[32m        <Label text="Sistema de Gerenciamento de Cursos Universitários" textFill="#CC0000">[m
+             <font>[m
+                 <Font size="18.0" />[m
+             </font>[m
+[36m@@ -23,22 +23,22 @@[m
+         <!-- LINHA DE BOTÕES -->[m
+         <HBox alignment="CENTER" spacing="10.0">[m
+             <children>[m
+[31m-                <Button onAction="#abrirCursos" prefWidth="140.0" text="Gerenciar Cursos" />[m
+[31m-                <Button onAction="#abrirDisciplinas" prefWidth="160.0" text="Gerenciar Disciplinas" />[m
+[31m-                <Button onAction="#abrirProfessores" prefWidth="160.0" text="Gerenciar Professores" />[m
+[31m-                <Button onAction="#abrirTurmas" prefWidth="140.0" text="Gerenciar Turmas" />[m
+[32m+[m[32m                <Button onAction="#abrirCursos" prefWidth="140.0" text="Gerenciar Cursos" style="-fx-background-color: #CC0000;" textFill="WHITE"/>[m
+[32m+[m[32m                <Button onAction="#abrirDisciplinas" prefWidth="160.0" text="Gerenciar Disciplinas" style="-fx-background-color: #CC0000;" textFill="WHITE"/>[m
+[32m+[m[32m                <Button onAction="#abrirProfessores" prefWidth="160.0" text="Gerenciar Professores" style="-fx-background-color: #CC0000;" textFill="WHITE"/>[m
+[32m+[m[32m                <Button onAction="#abrirTurmas" prefWidth="140.0" text="Gerenciar Turmas" style="-fx-background-color: #CC0000;" textFill="WHITE"/>[m
+             </children>[m
+         </HBox>[m
+ [m
+         <!-- TÍTULO DO RESUMO -->[m
+[31m-        <Label text="Resumo geral do sistema" textFill="WHITE">[m
+[32m+[m[32m        <Label text="Resumo geral do sistema" textFill="#CC0000">[m
+             <font>[m
+                 <Font size="14.0" />[m
+             </font>[m
+         </Label>[m
+ [m
+         <!-- TABELA DE RESUMO -->[m
+[31m-        <TableView fx:id="tbResumo" prefHeight="250.0" prefWidth="550.0" style="-fx-background-color: #000000;">[m
+[32m+[m[32m        <TableView fx:id="tbResumo" prefHeight="250.0" prefWidth="550.0" style="-fx-background-color: #FFFFFF;">[m
+             <columns>[m
+                 <TableColumn fx:id="colTipo" prefWidth="150.0" text="Tipo" />[m
+                 <TableColumn fx:id="colTotal" prefWidth="100.0" text="Total" />[m
+[1mdiff --git a/src/main/java/org/gerenciador_de_sistemas/view/professor-view.fxml b/src/main/java/org/gerenciador_de_sistemas/view/professor-view.fxml[m
+[1mindex f17b92c..c104c80 100644[m
+[1m--- a/src/main/java/org/gerenciador_de_sistemas/view/professor-view.fxml[m
+[1m+++ b/src/main/java/org/gerenciador_de_sistemas/view/professor-view.fxml[m
+[36m@@ -13,7 +13,7 @@[m
+ <?import javafx.scene.layout.VBox?>[m
+ <?import javafx.scene.text.Font?>[m
+ [m
+[31m-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="738.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gerenciador_de_sistemas.controller.ProfessorController">[m
+[32m+[m[32m<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="738.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gerenciador_de_sistemas.controller.ProfessorController">[m
+ [m
+     <children>[m
+ [m
+[36m@@ -38,7 +38,7 @@[m
+ [m
+                     <children>[m
+                         <!-- Nome -->[m
+[31m-                        <Label text="Nome:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="0">[m
+[32m+[m[32m                        <Label text="Nome:" textFill="#CC0000" GridPane.columnIndex="0" GridPane.rowIndex="0">[m
+                             <font>[m
+                                 <Font size="10.0" />[m
+                             </font>[m
+[36m@@ -46,7 +46,7 @@[m
+                         <TextField fx:id="txtNome" promptText="Digite o nome do professor" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="1" />[m
+ [m
+                         <!-- Email -->[m
+[31m-                        <Label text="E-mail:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="2">[m
+[32m+[m[32m                        <Label text="E-mail:" textFill="#CC0000" GridPane.columnIndex="0" GridPane.rowIndex="2">[m
+                             <font>[m
+                                 <Font size="10.0" />[m
+                             </font>[m
+[36m@@ -54,7 +54,7 @@[m
+                         <TextField fx:id="txtEmail" promptText="Digite o e-mail do professor" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="3" />[m
+ [m
+                         <!-- Formação -->[m
+[31m-                        <Label text="Formação:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="4">[m
+[32m+[m[32m                        <Label text="Formação:" textFill="#CC0000" GridPane.columnIndex="0" GridPane.rowIndex="4">[m
+                             <font>[m
+                                 <Font size="10.0" />[m
+                             </font>[m
+[36m@@ -66,25 +66,25 @@[m
+                 <!-- BOTÕES -->[m
+                 <HBox alignment="CENTER" prefHeight="60.0" prefWidth="738.0" spacing="5.0">[m
+                     <children>[m
+[31m-                        <Button mnemonicParsing="false" onAction="#onNovo" prefWidth="110.0" style="-fx-background-color: #3385ff;" text="Novo" textFill="WHITE">[m
+[32m+[m[32m                        <Button mnemonicParsing="false" onAction="#onNovo" prefWidth="110.0" style="-fx-background-color: #CC0000;" text="Novo" textFill="WHITE">[m
+                             <font>[m
+                                 <Font name="System Bold" size="12.0" />[m
+                             </font>[m
+                         </Button>[m
+ [m
+[31m-                        <Button mnemonicParsing="false" onAction="#onSalvar" prefWidth="110.0" style="-fx-background-color: #3385ff;" text="Salvar" textFill="WHITE">[m
+[32m+[m[32m                        <Button mnemonicParsing="false" onAction="#onSalvar" prefWidth="110.0" style="-fx-background-color: #CC0000;" text="Salvar" textFill="WHITE">[m
+                             <font>[m
+                                 <Font name="System Bold" size="12.0" />[m
+                             </font>[m
+                         </Button>[m
+ [m
+[31m-                        <Button mnemonicParsing="false" onAction="#onExcluir" prefWidth="110.0" style="-fx-background-color: #3385ff;" text="Excluir" textFill="WHITE">[m
+[32m+[m[32m                        <Button mnemonicParsing="false" onAction="#onExcluir" prefWidth="110.0" style="-fx-background-color: #CC0000;" text="Excluir" textFill="WHITE">[m
+                             <font>[m
+                                 <Font name="System Bold" size="12.0" />[m
+                             </font>[m
+                         </Button>[m
+ [m
+[31m-                        <Button onAction="#onEditar" prefWidth="100.0" style="-fx-background-color: #3385ff;" text="Editar" textFill="WHITE">[m
+[32m+[m[32m                        <Button onAction="#onEditar" prefWidth="100.0" style="-fx-background-color: #CC0000;" text="Editar" textFill="WHITE">[m
+                             <font>[m
+                                 <Font name="System Bold" size="12.0" />[m
+                             </font>[m
+[36m@@ -103,7 +103,7 @@[m
+         </VBox>[m
+ [m
+         <!-- TABELA DE PROFESSORES -->[m
+[31m-        <TableView fx:id="tbProfessores" onMouseClicked="#onTabelaClick" prefHeight="240.0" prefWidth="738.0" style="-fx-background-color: #000000;">[m
+[32m+[m[32m        <TableView fx:id="tbProfessores" onMouseClicked="#onTabelaClick" prefHeight="240.0" prefWidth="738.0" style="-fx-background-color: #FFFFFF;">[m
+             <columns>[m
+                 <TableColumn fx:id="colId" prefWidth="60.0" text="ID" />[m
+                 <TableColumn fx:id="colNome" prefWidth="250.0" text="NOME" />[m
+[1mdiff --git a/src/main/java/org/gerenciador_de_sistemas/view/turma-view.fxml b/src/main/java/org/gerenciador_de_sistemas/view/turma-view.fxml[m
+[1mindex 12a5233..f9f9f09 100644[m
+[1m--- a/src/main/java/org/gerenciador_de_sistemas/view/turma-view.fxml[m
+[1m+++ b/src/main/java/org/gerenciador_de_sistemas/view/turma-view.fxml[m
+[36m@@ -14,12 +14,12 @@[m
+ <?import javafx.scene.layout.VBox?>[m
+ <?import javafx.scene.text.Font?>[m
+ [m
+[31m-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gerenciador_de_sistemas.controller.TurmaController">[m
+[32m+[m[32m<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gerenciador_de_sistemas.controller.TurmaController">[m
+ [m
+     <children>[m
+ [m
+         <!-- FORM + BOTÕES -->[m
+[31m-        <VBox prefHeight="200.0" prefWidth="800.0" style="-fx-background-color: #000000;">[m
+[32m+[m[32m        <VBox prefHeight="200.0" prefWidth="800.0" style="-fx-background-color: #FFFFFF;">[m
+             <children>[m
+ [m
+                 <!-- FORM -->[m
+[36m@@ -31,7 +31,7 @@[m
+ [m
+                     <children>[m
+                         <!-- Semestre -->[m
+[31m-                        <Label text="Semestre:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="0">[m
+[32m+[m[32m                        <Label text="Semestre:" textFill="#CC0000" GridPane.columnIndex="0" GridPane.rowIndex="0">[m
+                             <font>[m
+                                 <Font size="10.0" />[m
+                             </font>[m
+[36m@@ -39,7 +39,7 @@[m
+                         <TextField fx:id="txtSemestre" promptText="Ex: 2025/1" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="1" />[m
+ [m
+                         <!-- Horário -->[m
+[31m-                        <Label text="Horário:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="2">[m
+[32m+[m[32m                        <Label text="Horário:" textFill="#CC0000" GridPane.columnIndex="0" GridPane.rowIndex="2">[m
+                             <font>[m
+                                 <Font size="10.0" />[m
+                             </font>[m
+[36m@@ -47,7 +47,7 @@[m
+                         <TextField fx:id="txtHorario" promptText="Ex: Seg/Qua 19:00 - 20:40" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="3" />[m
+ [m
+                         <!-- Disciplina -->[m
+[31m-                        <Label text="Disciplina:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="4">[m
+[32m+[m[32m                        <Label text="Disciplina:" textFill="#CC0000" GridPane.columnIndex="0" GridPane.rowIndex="4">[m
+                             <font>[m
+                                 <Font size="10.0" />[m
+                             </font>[m
+[36m@@ -58,7 +58,7 @@[m
+                      </opaqueInsets></ComboBox>[m
+ [m
+                         <!-- Professor -->[m
+[31m-                        <Label text="Professor:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="6">[m
+[32m+[m[32m                        <Label text="Professor:" textFill="#CC0000" GridPane.columnIndex="0" GridPane.rowIndex="6">[m
+                             <font>[m
+                                 <Font size="10.0" />[m
+                             </font>[m
+[36m@@ -80,25 +80,25 @@[m
+                 <!-- BOTÕES -->[m
+                 <HBox alignment="CENTER" prefHeight="60.0" prefWidth="800.0" spacing="5.0">[m
+                     <children>[m
+[31m-                        <Button mnemonicParsing="false" onAction="#onNovo" prefWidth="110.0" style="-fx-background-color: #3385ff;" text="Novo" textFill="WHITE">[m
+[32m+[m[32m                        <Button mnemonicParsing="false" onAction="#onNovo" prefWidth="110.0" style="-fx-background-color: #CC0000;" text="Novo" textFill="WHITE">[m
+                             <font>[m
+                                 <Font name="System Bold" size="12.0" />[m
+                             </font>[m
+                         </Button>[m
+ [m
+[31m-                        <Button mnemonicParsing="false" onAction="#onSalvar" prefWidth="110.0" style="-fx-background-color: #3385ff;" text="Salvar" textFill="WHITE">[m
+[32m+[m[32m                        <Button mnemonicParsing="false" onAction="#onSalvar" prefWidth="110.0" style="-fx-background-color: #CC0000;" text="Salvar" textFill="WHITE">[m
+                             <font>[m
+                                 <Font name="System Bold" size="12.0" />[m
+                             </font>[m
+                         </Button>[m
+ [m
+[31m-                        <Button mnemonicParsing="false" onAction="#onExcluir" prefWidth="110.0" style="-fx-background-color: #3385ff;" text="Excluir" textFill="WHITE">[m
+[32m+[m[32m                        <Button mnemonicParsing="false" onAction="#onExcluir" prefWidth="110.0" style="-fx-background-color: #CC0000;" text="Excluir" textFill="WHITE">[m
+                             <font>[m
+                                 <Font name="System Bold" size="12.0" />[m
+                             </font>[m
+                         </Button>[m
+ [m
+[31m-                        <Button onAction="#onEditar" prefWidth="100.0" style="-fx-background-color: #3385ff;" text="Editar" textFill="WHITE">[m
+[32m+[m[32m                        <Button onAction="#onEditar" prefWidth="100.0" style="-fx-background-color: #CC0000;" text="Editar" textFill="WHITE">[m
+                             <font>[m
+                                 <Font name="System Bold" size="12.0" />[m
+                             </font>[m
+[36m@@ -117,7 +117,7 @@[m
+         </VBox>[m
+ [m
+         <!-- TABELA -->[m
+[31m-        <TableView fx:id="tbTurmas" onMouseClicked="#onTabelaClick" prefHeight="260.0" prefWidth="800.0" style="-fx-background-color: #000000;">[m
+[32m+[m[32m        <TableView fx:id="tbTurmas" onMouseClicked="#onTabelaClick" prefHeight="260.0" prefWidth="800.0" style="-fx-background-color: #FFFFFF;">[m
+             <columns>[m
+                 <TableColumn fx:id="colId" prefWidth="60.0" text="ID" />[m
+                 <TableColumn fx:id="colSemestre" prefWidth="120.0" text="SEMESTRE" />[m

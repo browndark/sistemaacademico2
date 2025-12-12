@@ -14,12 +14,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gerenciador_de_sistemas.controller.TurmaController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gerenciador_de_sistemas.controller.TurmaController">
 
     <children>
 
         <!-- FORM + BOTÕES -->
-        <VBox prefHeight="200.0" prefWidth="800.0" style="-fx-background-color: #000000;">
+        <VBox prefHeight="200.0" prefWidth="800.0" style="-fx-background-color: #FFFFFF;">
             <children>
 
                 <!-- FORM -->
@@ -31,7 +31,7 @@
 
                     <children>
                         <!-- Semestre -->
-                        <Label text="Semestre:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                        <Label text="Semestre:" textFill="#CC0000" GridPane.columnIndex="0" GridPane.rowIndex="0">
                             <font>
                                 <Font size="10.0" />
                             </font>
@@ -39,7 +39,7 @@
                         <TextField fx:id="txtSemestre" promptText="Ex: 2025/1" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="1" />
 
                         <!-- Horário -->
-                        <Label text="Horário:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                        <Label text="Horário:" textFill="#CC0000" GridPane.columnIndex="0" GridPane.rowIndex="2">
                             <font>
                                 <Font size="10.0" />
                             </font>
@@ -47,7 +47,7 @@
                         <TextField fx:id="txtHorario" promptText="Ex: Seg/Qua 19:00 - 20:40" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="3" />
 
                         <!-- Disciplina -->
-                        <Label text="Disciplina:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="4">
+                        <Label text="Disciplina:" textFill="#CC0000" GridPane.columnIndex="0" GridPane.rowIndex="4">
                             <font>
                                 <Font size="10.0" />
                             </font>
@@ -58,7 +58,7 @@
                      </opaqueInsets></ComboBox>
 
                         <!-- Professor -->
-                        <Label text="Professor:" textFill="WHITE" GridPane.columnIndex="0" GridPane.rowIndex="6">
+                        <Label text="Professor:" textFill="#CC0000" GridPane.columnIndex="0" GridPane.rowIndex="6">
                             <font>
                                 <Font size="10.0" />
                             </font>
@@ -80,25 +80,25 @@
                 <!-- BOTÕES -->
                 <HBox alignment="CENTER" prefHeight="60.0" prefWidth="800.0" spacing="5.0">
                     <children>
-                        <Button mnemonicParsing="false" onAction="#onNovo" prefWidth="110.0" style="-fx-background-color: #3385ff;" text="Novo" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#onNovo" prefWidth="110.0" style="-fx-background-color: #CC0000;" text="Novo" textFill="WHITE">
                             <font>
                                 <Font name="System Bold" size="12.0" />
                             </font>
                         </Button>
 
-                        <Button mnemonicParsing="false" onAction="#onSalvar" prefWidth="110.0" style="-fx-background-color: #3385ff;" text="Salvar" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#onSalvar" prefWidth="110.0" style="-fx-background-color: #CC0000;" text="Salvar" textFill="WHITE">
                             <font>
                                 <Font name="System Bold" size="12.0" />
                             </font>
                         </Button>
 
-                        <Button mnemonicParsing="false" onAction="#onExcluir" prefWidth="110.0" style="-fx-background-color: #3385ff;" text="Excluir" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#onExcluir" prefWidth="110.0" style="-fx-background-color: #CC0000;" text="Excluir" textFill="WHITE">
                             <font>
                                 <Font name="System Bold" size="12.0" />
                             </font>
                         </Button>
 
-                        <Button onAction="#onEditar" prefWidth="100.0" style="-fx-background-color: #3385ff;" text="Editar" textFill="WHITE">
+                        <Button onAction="#onEditar" prefWidth="100.0" style="-fx-background-color: #CC0000;" text="Editar" textFill="WHITE">
                             <font>
                                 <Font name="System Bold" size="12.0" />
                             </font>
@@ -117,7 +117,7 @@
         </VBox>
 
         <!-- TABELA -->
-        <TableView fx:id="tbTurmas" onMouseClicked="#onTabelaClick" prefHeight="260.0" prefWidth="800.0" style="-fx-background-color: #000000;">
+        <TableView fx:id="tbTurmas" onMouseClicked="#onTabelaClick" prefHeight="260.0" prefWidth="800.0" style="-fx-background-color: #FFFFFF;">
             <columns>
                 <TableColumn fx:id="colId" prefWidth="60.0" text="ID" />
                 <TableColumn fx:id="colSemestre" prefWidth="120.0" text="SEMESTRE" />

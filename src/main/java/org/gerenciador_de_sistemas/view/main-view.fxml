@@ -9,12 +9,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" prefHeight="500.0" prefWidth="600.0" spacing="20.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gerenciador_de_sistemas.controller.mainController">
+<VBox alignment="TOP_CENTER" prefHeight="500.0" prefWidth="600.0" spacing="20.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.gerenciador_de_sistemas.controller.mainController">
 
     <children>
 
         <!-- TÍTULO PRINCIPAL -->
-        <Label text="Sistema de Gerenciamento de Cursos Universitários" textFill="WHITE">
+        <Label text="Sistema de Gerenciamento de Cursos Universitários" textFill="#CC0000">
             <font>
                 <Font size="18.0" />
             </font>
@@ -23,22 +23,22 @@
         <!-- LINHA DE BOTÕES -->
         <HBox alignment="CENTER" spacing="10.0">
             <children>
-                <Button onAction="#abrirCursos" prefWidth="140.0" text="Gerenciar Cursos" />
-                <Button onAction="#abrirDisciplinas" prefWidth="160.0" text="Gerenciar Disciplinas" />
-                <Button onAction="#abrirProfessores" prefWidth="160.0" text="Gerenciar Professores" />
-                <Button onAction="#abrirTurmas" prefWidth="140.0" text="Gerenciar Turmas" />
+                <Button onAction="#abrirCursos" prefWidth="140.0" text="Gerenciar Cursos" style="-fx-background-color: #CC0000;" textFill="WHITE"/>
+                <Button onAction="#abrirDisciplinas" prefWidth="160.0" text="Gerenciar Disciplinas" style="-fx-background-color: #CC0000;" textFill="WHITE"/>
+                <Button onAction="#abrirProfessores" prefWidth="160.0" text="Gerenciar Professores" style="-fx-background-color: #CC0000;" textFill="WHITE"/>
+                <Button onAction="#abrirTurmas" prefWidth="140.0" text="Gerenciar Turmas" style="-fx-background-color: #CC0000;" textFill="WHITE"/>
             </children>
         </HBox>
 
         <!-- TÍTULO DO RESUMO -->
-        <Label text="Resumo geral do sistema" textFill="WHITE">
+        <Label text="Resumo geral do sistema" textFill="#CC0000">
             <font>
                 <Font size="14.0" />
             </font>
         </Label>
 
         <!-- TABELA DE RESUMO -->
-        <TableView fx:id="tbResumo" prefHeight="250.0" prefWidth="550.0" style="-fx-background-color: #000000;">
+        <TableView fx:id="tbResumo" prefHeight="250.0" prefWidth="550.0" style="-fx-background-color: #FFFFFF;">
             <columns>
                 <TableColumn fx:id="colTipo" prefWidth="150.0" text="Tipo" />
                 <TableColumn fx:id="colTotal" prefWidth="100.0" text="Total" />
